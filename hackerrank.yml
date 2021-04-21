@@ -10,7 +10,7 @@ configuration:
   ide_config:
     default_open_files:
       - src/App.js
-      - src/components/dropdown/index.js
+      - src/components/Counter.js
     project_menu:
       run: bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm start
       install: bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm install
