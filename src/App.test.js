@@ -2,9 +2,10 @@ import React from 'react';
 import App from './App';
 import {render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import Counter from "./components/Counter"
 
 test('initial ui renders correctly', () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     let headerEl = getByTestId("header")
     let counterEl = getByTestId("counter")
     let addEl = getByTestId("add-button")
@@ -19,7 +20,7 @@ test('initial ui renders correctly', () => {
 });
 
 test("changing value of input works correctly", () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     const inputEl = getByTestId("input-field")
 
     fireEvent.change(inputEl, {
@@ -32,7 +33,7 @@ test("changing value of input works correctly", () => {
 });
 
 test("addition works correctly", () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     const inputEl = getByTestId("input-field")
     const addEl = getByTestId("add-button")
     const counterEl = getByTestId("counter")
@@ -49,7 +50,7 @@ test("addition works correctly", () => {
 });
 
 test("subtraction works correctly", () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     const inputEl = getByTestId("input-field")
     const subEl = getByTestId("sub-button")
     const counterEl = getByTestId("counter")
@@ -66,7 +67,7 @@ test("subtraction works correctly", () => {
 });
 
 test("consecutive addition and subtraction works correctly", () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     const inputEl = getByTestId("input-field")
     const addEl = getByTestId("add-button")
     const subEl = getByTestId("sub-button")
@@ -122,7 +123,7 @@ test("consecutive addition and subtraction works correctly", () => {
 });
 
 test("having a non numeric input in input field disables the buttons", () => {
-    const { getByTestId } = render(<App />)
+    const { getByTestId } = render(<Counter />)
     const inputEl = getByTestId("input-field")
     const addEl = getByTestId("add-button")
     const subEl = getByTestId("sub-button")
