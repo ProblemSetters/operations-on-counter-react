@@ -4,47 +4,57 @@ import 'h8k-components';
 function Counter() {
 
   const [counterValue, setCounterValue ] = useState(0);
-  const [inputValue, setInputValue ] = useState(0);
-  const [isInteger, setIsIntegerFlag ] = useState(true);
+  const [inputValue, setInputValue ] = useState("");
+  const [isInteger, setIsIntegerFlag ] = useState(false);
 
   const handleAddition = () => {
-    setCounterValue(counterValue + inputValue)
+    setCounterValue(counterValue + parseInt(inputValue))
   }
 
   const handleSubtraction = () => {
-    setCounterValue(counterValue - inputValue)
+    setCounterValue(counterValue - parseInt(inputValue))
   }
 
   const handleChange = (e) => {
-    setInputValue(parseInt(e.target.value))
-    setIsIntegerFlag(!isNaN(e.target.value))
+    const value = e.target.value
+    const isInt = !isNaN(value) && (parseInt(value) == value)
+    setInputValue(value)
+    setIsIntegerFlag(isInt)
+  }
+
+  const handleReset = (e) => {
+    setCounterValue(0)
   }
 
   return (
     <div>
       <div className="mt-100 layout-column align-items-center justify-content-center">
-        <h1 className="my-0" data-testid="header">My Counter</h1>
+        <h1 className="my-0" data-testid="header">Counter</h1>
         <h1 className="my-0" data-testid="counter">{counterValue}</h1>
         <div className="layout-row">
           <button 
             data-testid="add-button"
             disabled={!isInteger}
             onClick={handleAddition}
-          >+</button>
+          >Add</button>
           <input 
             data-testid="input-field"
             className="mt-10" 
             type="text" 
-            placeholder="Enter value"
+            placeholder="Enter value to add/subtract"
+            value={inputValue}
             onChange={handleChange}
-            defaultValue={0}
           />
           <button 
             data-testid="sub-button"
             disabled={!isInteger}
             onClick={handleSubtraction}
-          >-</button>
+          >Sub</button>
         </div>
+        <button 
+          data-testid="reset-button"
+          onClick={handleReset}
+        >Reset Counter</button>
       </div>
     </div>
   );

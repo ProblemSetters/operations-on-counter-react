@@ -10,13 +10,27 @@ test('initial ui renders correctly', () => {
     let addEl = getByTestId("add-button")
     let inputEl = getByTestId("input-field")
     let subEl = getByTestId("sub-button")
+    let resetEl = getByTestId("reset-button")
 
-    expect(headerEl.textContent).toBe("My Counter")
+    expect(headerEl.textContent).toBe("Counter")
     expect(counterEl.textContent).toBe("0")
-    expect(addEl.textContent).toBe("+")
-    expect(inputEl.value).toBe("0")
-    expect(subEl.textContent).toBe("-")
+    expect(addEl.textContent).toBe("Add")
+    expect(inputEl.value).toBe("")
+    expect(subEl.textContent).toBe("Sub")
+    expect(resetEl.textContent).toBe("Reset Counter")
 });
+
+test("reset counter button works correctly", () => {
+    const {getByTestId } = render(<Counter />)
+    let counterEl = getByTestId("counter")
+    let inputEl = getByTestId("input-field")
+    let resetEl = getByTestId("reset-button")
+
+    fireEvent.click(resetEl)
+
+    expect(counterEl.textContent).toBe("0")
+    expect(inputEl.value).toBe("")
+})
 
 test("changing value of input works correctly", () => {
     const { getByTestId } = render(<Counter />)
