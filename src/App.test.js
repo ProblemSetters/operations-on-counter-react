@@ -149,4 +149,22 @@ test("having a non numeric input in input field disables the buttons", () => {
 
     expect(addEl).toBeDisabled()
     expect(subEl).toBeDisabled()
+
+    fireEvent.change(inputEl, {
+        target: {
+            value: 5
+        }
+    })
+
+    expect(addEl).toBeEnabled()
+    expect(subEl).toBeEnabled()
+     
+    fireEvent.change(inputEl, {
+        target: {
+            value: 12.123
+        }
+    })
+
+    expect(addEl).toBeDisabled()
+    expect(subEl).toBeDisabled()
 });
